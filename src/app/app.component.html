@@ -1,21 +1,93 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<h1 class="text-center m-3"><i>Angular Directives</i></h1>
+<div class="bg-info text-center p-5"> 
+<h3>NgIf, NgFor and NgSwitch</h3>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4">
+			<select #select (change)="change(select.value)" class="form-control"> 
+				<option></option>
+			    <option value=0>NgIf Admin</option>
+			    <option value=1>NgIf User</option>
+			    <option value=2>NgFor</option>
+			    <option value=3>NgSwitch</option>
+			</select>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
+	</div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+</div><br>
+
+<div class="container" *ngIf="page==0">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="text-center text-primary">About Admin</h2><br>
+			<p>Role-based administration allows you to provide the right Envoy access to specified team members. Anyone with an employee record can be assigned an Envoy admin role.</p>
+			<h4 class="text-success">Global Admin role</h4><br>
+			<ul>
+				<li>Full access to visitor entries and invites at all locations</li>
+				<li>Full access to all settings at all locations</li>
+				<li>Full access to device management at all locations</li>
+				<li>Full access to employee records at all locations</li>
+				<li>Full access to assign any admin roles, at any location</li>
+				<li>Full access to billing details (to change credit card, change plan subscription)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="container" *ngIf="page==1">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="text-center text-primary">About User Interface</h2><br>
+			<p>A user interface, also called a "UI" or simply an "interface," is the means in which a person controls a software application or hardware device. A good user interface provides a "user-friendly" experience, allowing the user to interact with the software or hardware in a natural and intuitive way.</p>
+			<p>Nearly all software programs have a graphical user interface, or GUI. This means the program includes graphical controls, which the user can select using a mouse or keyboard. A typical GUI of a software program includes a menu bar, toolbar, windows, buttons, and other controls. The Macintosh and Windows operating systems have different user interfaces, but they share many of the same elements, such as a desktop, windows, icons, etc. These common elements make it possible for people to use either operating system without having to completely relearn the interface. Similarly, programs like word processors and Web browsers all have rather similar interfaces, providing a consistent user experience across multiple programs.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container" *ngIf="page==2">
+	<div class="row">
+		<h2 class="text-center text-primary">NgFor</h2>
+		<div class="col-lg-3"></div>
+		<div class="col-lg-6">
+			<div class="card mt-5" *ngFor="let user of details">
+				<div class="row"> 
+					<div class="col-lg-4">
+					    <img class="card-img-left image" alt="Card image" src={{user.image}}>
+					</div>
+					<div class="col-lg-8">
+					    <div class="card-body-right mt-5">
+					      <h4>Name:{{user.name}}</h4>
+					      <p>Email:{{user.email}}</p>
+					      <p>Address:{{user.address}}</p>
+					      <p>Phone No:{{user.phone}}</p><br>
+					  	</div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><br>
+
+<div class="container" *ngIf="page==3">
+	<div class="row">
+		<div class="col-lg-4">
+			<select [(ngModel)]="type" class="form-control">
+			  <option [value]="1">First</option>
+			  <option [value]="2">Second</option>
+			  <option [value]="3">Third</option>
+			  <option [value]="99">Other</option>
+			</select>
+
+			<div [ngSwitch]="type">
+			  <div *ngSwitchCase="1">Nila</div>
+			  <div *ngSwitchCase="2">Karthick</div>
+			  <div *ngSwitchCase="3">Kavi</div>
+			  <div *ngSwitchDefault>Default</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <router-outlet></router-outlet>
